@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Fullscreen</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header,
+        footer {
+            height: 100vh;
+            background: #333;
+            font-size: 4em;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .fixedwrapper {
+            padding: 100px 0;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+        }
+
+        .wrapper div {
+            height: 100vh;
+        }
+
+        .desc {
+            position: absolute;
+            top: 50%;
+            left: 200%;
+            transform: translateY(-50%);
+            width: 130px;
+            opacity: 0;
+        }
+
+        .box {
+            position: relative;
+        }
+
+        .box img {
+            width: 40px;
+            display: block;
+        }
+
+        .four {
+            transform: translateY(0);
+        }
+
+        .three {
+            transform: translateY(0);
+        }
+
+        .two {
+            transform: translateY(0);
+        }
+
+        .one {
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>SCROLL</header>
+    <div class="fixedwrapper">
+        <div class="box four">
+            <img src="4.png">
+            <div class="desc">
+                <h2>Top body</h2>
+            </div>
+        </div>
+        <div class="box three">
+            <img src="3.png">
+            <div class="desc">
+                <h2>Middle body</h2>
+            </div>
+        </div>
+        <div class="box two">
+            <img src="2.png">
+            <div class="desc">
+                <h2>Lower body</h2>
+            </div>
+        </div>
+        <div class="box one">
+            <div class="desc">
+                <h2>Tip</h2>
+            </div><img src="1.png">
+
+        </div>
+
+
+
+
+    </div>
+    <section class="wrapper">
+        <div class="oneshow"></div>
+        <div class="twoshow"></div>
+        <div class="threeshow"></div>
+        <div class="fourshow"></div>
+        <div class="allshow"></div>
+    </section>
+    <footer>SCROLL</footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script>
+        var wrapperheight = $('.wrapper').height() - 500;
+
+
+        var controller = new ScrollMagic.Controller();
+
+        var tweenone = new TimelineMax();
+        var tweentwo = new TimelineMax();
+        var tweenthree = new TimelineMax();
+        var tweenfour = new TimelineMax();
+        var tweenall = new TimelineMax();
+
+
+        var sceneone = new ScrollMagic.Scene({
+                triggerElement: '.wrapper',
+                duration: wrapperheight,
+                triggerHook: 0
+            })
+            .setPin(".fixedwrapper")
+            .addIndicators({
+                colorTrigger: "red",
+                colorStart: "red",
+                colorEnd: "red"
+            })
+            .addTo(controller)
+
+
+        tweenone
+            .to(".four", 0.5, {
+                opacity: 1,
+                scale: 1.2,
+                zIndex: 2
+            })
+            .to(".one, .two, .three", 0.5, {
+                opacity: 0.4,
+                scale: 1,
+                zIndex: 1
+            }, "-=0.5")
+            .to(".four .desc", 0.5, {
+                opacity: 1
+            })
+
+        var sceneone = new ScrollMagic.Scene({
+                triggerElement: '.oneshow',
+                triggerHook: 0
+            })
+            .setTween(tweenone)
+            .addTo(controller)
+
+
+        tweentwo
+            .to(".three", 0.5, {
+                opacity: 1,
+                scale: 1.2,
+                zIndex: 2
+            })
+            .to(".one, .two, .four", 0.5, {
+                opacity: 0.4,
+                scale: 1,
+                zIndex: 1
+            }, "-=0.5")
+            .to(".three .desc", 0.5, {
+                opacity: 1
+            })
+
+        var sceneone = new ScrollMagic.Scene({
+                triggerElement: '.twoshow',
+                triggerHook: 0
+            })
+            .setTween(tweentwo)
+            .addTo(controller)
+
+        tweenthree
+            .to(".two", 0.5, {
+                opacity: 1,
+                scale: 1.2,
+                zIndex: 2
+            })
+            .to(".one, .three, .four", 0.5, {
+                opacity: 0.4,
+                scale: 1,
+                zIndex: 1
+            }, "-=0.5")
+            .to(".two .desc", 0.5, {
+                opacity: 1
+            })
+
+        var sceneone = new ScrollMagic.Scene({
+                triggerElement: '.threeshow',
+                triggerHook: 0
+            })
+            .setTween(tweenthree)
+            .addTo(controller)
+
+        tweenfour
+            .to(".one", 0.5, {
+                opacity: 1,
+                scale: 1.2,
+                zIndex: 2
+            })
+            .to(".two, .three, .four", 0.5, {
+                opacity: 0.4,
+                scale: 1,
+                zIndex: 1
+            }, "-=0.5")
+            .to(".one .desc", 0.5, {
+                opacity: 1
+            })
+
+        var sceneone = new ScrollMagic.Scene({
+                triggerElement: '.fourshow',
+                triggerHook: 0
+            })
+            .setTween(tweenfour)
+            .addTo(controller)
+
+        tweenall
+            .to(".one,.two, .three, .four", 0.5, {
+                opacity: 1,
+                scale: 1,
+                zIndex: 1
+            })
+
+        var sceneone = new ScrollMagic.Scene({
+                triggerElement: '.allshow',
+                triggerHook: 0.2
+            })
+            .setTween(tweenall)
+            .addTo(controller)
+
+    </script>
+
+    <script>
+
+    </script>
+
+</body>
+
+</html>
